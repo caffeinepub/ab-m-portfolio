@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+    --background: 0.12 0.015 240;
+    --foreground: 0.965 0.005 240;
+    --card: 0.15 0.02 240;
+    --card-foreground: 0.965 0.005 240;
+    --popover: 0.17 0.022 240;
+    --popover-foreground: 0.965 0.005 240;
+    --primary: 0.7 0.1 75;
+    --primary-foreground: 0.12 0.015 240;
+    --secondary: 0.2 0.025 240;
+    --secondary-foreground: 0.965 0.005 240;
+    --muted: 0.2 0.02 240;
+    --muted-foreground: 0.72 0.015 240;
+    --accent: 0.7 0.1 75;
+    --accent-foreground: 0.12 0.015 240;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.25 0.02 240;
+    --input: 0.22 0.02 240;
+    --ring: 0.7 0.1 75;
+    --chart-1: 0.7 0.1 75;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.15 0.02 240;
+    --sidebar-foreground: 0.965 0.005 240;
+    --sidebar-primary: 0.7 0.1 75;
+    --sidebar-primary-foreground: 0.12 0.015 240;
+    --sidebar-accent: 0.2 0.025 240;
+    --sidebar-accent-foreground: 0.965 0.005 240;
+    --sidebar-border: 0.25 0.02 240;
+    --sidebar-ring: 0.7 0.1 75;
+    /* Custom gold vars for inline use */
+    --gold: #c7a14b;
+    --gold-bright: #d1b05a;
+    --dark-bg: #0b0f14;
+    --dark-card: #141a24;
+    --dark-border: #2a3240;
+  }
+
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background: linear-gradient(135deg, #0b0f14 0%, #141a24 50%, #0d1219 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .gold-text {
+    color: #c7a14b;
+  }
+  .gold-border {
+    border-color: #c7a14b;
+  }
+  .section-label {
+    @apply text-xs font-semibold tracking-[0.2em] uppercase;
+    color: #c7a14b;
+  }
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .stagger-1 {
+    transition-delay: 0.1s;
+  }
+  .stagger-2 {
+    transition-delay: 0.2s;
+  }
+  .stagger-3 {
+    transition-delay: 0.3s;
+  }
+  .stagger-4 {
+    transition-delay: 0.4s;
+  }
+  .stagger-5 {
+    transition-delay: 0.5s;
+  }
+  .stagger-6 {
+    transition-delay: 0.6s;
+  }
+  .card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s
+      ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-6px);
+    border-color: #c7a14b !important;
+    box-shadow: 0 20px 40px rgba(199, 161, 75, 0.15);
+  }
+  .glow-gold {
+    box-shadow: 0 0 30px rgba(199, 161, 75, 0.2);
+  }
+}
