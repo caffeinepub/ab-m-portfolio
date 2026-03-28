@@ -526,45 +526,51 @@ function ServicesSection() {
 // ---------- Portfolio ----------
 const portfolioItems = [
   {
-    title: "Luxe Brand Identity",
-    category: "Logo Design",
-    gradient: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
-    accent: "#C7A14B",
-  },
-  {
-    title: "TechFlow Landing Page",
-    category: "Landing Page Design",
-    gradient: "linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #2c3e50 100%)",
-    accent: "#4A90D9",
-  },
-  {
-    title: "Artisan Coffee Branding",
-    category: "Brand Identity",
-    gradient: "linear-gradient(135deg, #2c1810 0%, #4a2c1a 50%, #6b3e26 100%)",
-    accent: "#D4845A",
-  },
-  {
-    title: "GrowthHub Thumbnail Pack",
-    category: "YouTube Design",
-    gradient: "linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #2a1010 100%)",
-    accent: "#FF4444",
-  },
-  {
-    title: "Minimal Agency Website",
+    title: "Design That Speaks",
     category: "Graphic Design",
-    gradient: "linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)",
-    accent: "#4ECDC4",
+    image:
+      "/assets/uploads/unnamed_5-019d3311-d11f-71ad-b90d-bfc2e8d12503-1.jpg",
   },
   {
-    title: "NovaBrand Identity System",
+    title: "Build Your Brand Identity",
+    category: "Graphic Design",
+    image:
+      "/assets/uploads/img_20260320_061619-019d3311-eb5b-71dd-97cd-8c022aa91146-2.jpg",
+  },
+  {
+    title: "Creative Design That Stands Out",
+    category: "Graphic Design",
+    image:
+      "/assets/uploads/img_20260320_061547-019d3311-ec8b-75d6-b653-a7371a252564-3.jpg",
+  },
+  {
+    title: "Pemela Learning Centre",
     category: "Logo Design",
-    gradient: "linear-gradient(135deg, #1a0533 0%, #2d1b69 50%, #11998e 100%)",
-    accent: "#A29BFE",
+    image:
+      "/assets/uploads/ideogram-v3.0_luxury_3d_education_logo_for_pemela_learning_centre_elegant_open_book_with_glowi-0-019d3312-45c8-74b8-a6f7-1cb0088b86bb-4.jpg",
+  },
+  {
+    title: "Zina Logistics Ltd.",
+    category: "Logo Design",
+    image:
+      "/assets/uploads/ideogram-v3.0_high-end_3d_logistics_logo_for_zina_logistics_ltd._futuristic_truck_with_motion_-0-019d3312-49e4-7509-a3d0-6679413b157d-5.jpg",
+  },
+  {
+    title: "Firm Foundation Academy",
+    category: "Logo Design",
+    image:
+      "/assets/uploads/ideogram-v3.0_luxury_3d_academic_badge_logo_for_firm_foundation_academy_shield_emblem_with_boo-0-019d3312-5891-7395-a95f-198799a790b7-6.jpg",
   },
 ];
 
 function PortfolioSection() {
   const ref = useFadeIn();
+  const [activeFilter, setActiveFilter] = useState("All");
+  const categories = ["All", "Logo Design", "Graphic Design"];
+  const filtered =
+    activeFilter === "All"
+      ? portfolioItems
+      : portfolioItems.filter((item) => item.category === activeFilter);
   return (
     <section id="work" className="py-24" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
@@ -576,31 +582,39 @@ function PortfolioSection() {
           >
             Selected <span style={{ color: "#C7A14B" }}>Work</span>
           </h2>
+          <div className="flex justify-center gap-3 mt-8 flex-wrap">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
+                className="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200"
+                style={{
+                  background: activeFilter === cat ? "#C7A14B" : "transparent",
+                  color: activeFilter === cat ? "#0B0F14" : "#C7A14B",
+                  border: "1px solid #C7A14B",
+                }}
+                type="button"
+                data-ocid="portfolio.filter.tab"
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {portfolioItems.map((item, i) => (
+          {filtered.map((item, i) => (
             <div
               key={item.title}
               className={`fade-in stagger-${(i % 3) + 1} card-hover group rounded-xl overflow-hidden`}
               style={{ border: "1px solid #2A3240" }}
               data-ocid={`portfolio.item.${i + 1}`}
             >
-              <div
-                className="h-52 relative overflow-hidden"
-                style={{ background: item.gradient }}
-              >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div
-                    className="w-16 h-16 rounded-full opacity-30"
-                    style={{ background: item.accent, filter: "blur(20px)" }}
-                  />
-                  <div
-                    className="absolute text-4xl font-bold opacity-10 tracking-widest uppercase"
-                    style={{ color: item.accent }}
-                  >
-                    {item.category.split(" ")[0]}
-                  </div>
-                </div>
+              <div className="h-52 relative overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover"
+                />
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
                   style={{ background: "rgba(199,161,75,0.12)" }}
